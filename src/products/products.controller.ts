@@ -9,7 +9,6 @@ export class ProductsController {
 
     @Post()
     async create(@Body() createProductDto:CreateProductDto) {
-        console.log(createProductDto);
         return this.productsService.create(createProductDto);
     }
 

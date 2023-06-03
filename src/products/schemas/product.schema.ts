@@ -5,10 +5,14 @@ export type ProductDocument = HydratedDocument<Product>;
 
 @Schema()
 export class Product {
-  @Prop()
+  @Prop({
+    required: true
+  })
   name: string;
 
-  @Prop()
+  @Prop({
+    required: true
+  })
   value: number;
 
   @Prop()

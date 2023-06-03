@@ -1,25 +1,27 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Product } from './schemas/product.schema';
 import { CreateProductDto } from './dtos/createProduct.dto';
-
+import { ClientProxy } from '@nestjs/microservices';
 
 @Injectable()
 export class ProductsService {
-
-    constructor(@InjectModel(Product.name) private productModel: Model<Product>) {}
+    constructor(
+        @Inject('PRODUCTS_SERVICE') private client: ClientProxy,
+        @InjectModel(Product.name) private productModel: Model<Product>
+    ) {}
 
     async create(createProductDto: CreateProductDto) {
-
         const alreadyExists = await this.productModel.find({name:createProductDto.name}).exec()
-        console.log("teste",alreadyExists)
-        if(alreadyExists.length) return "Already exists"
+        if(alreadyExists.length) throw new HttpException('Product already exists', HttpStatus.CONFLICT);
 
         const newProduct = new this.productModel(createProductDto);
-        const savedProduct = await newProduct.save();
-        console.log(savedProduct)
-        return "New product added";
+        await newProduct.save();
+        
+        this.client.emit("newProduct", createProductDto)
+
+        return newProduct;
     }
 
     async findAll() {
