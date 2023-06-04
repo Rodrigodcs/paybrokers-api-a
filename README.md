@@ -8,9 +8,9 @@ The second API receives products from the RabbitMQ queue and saves them in its o
 
 ## How to run
 
-2. Clone the API-A repository, available at: https://github.com/Rodrigodcs/paybrokers-api-a
-
 1. Clone this repository (API-B)
+
+2. Clone the API-A repository, available at: https://github.com/Rodrigodcs/paybrokers-api-b
 
 3. Create a .env file based on .env.example
 
