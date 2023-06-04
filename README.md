@@ -42,14 +42,14 @@ npm start
 
  ```json
 //Body
-  "name": product's name (string, required),
-  "value": product's value (number, required),
-  "description": product's description (string, optional)
+  "name": (string, required),
+  "value": (number, required),
+  "description": (string, optional)
 ```
 
 ### API-B
- - GET /products/:page?search=mousepad
+ - GET /products/:page
 
 This route returns an array of up to 10 products.
 The path parameter "page" indicates which page of products will be returned.
-The query parameter "search" filters the results to match it.
+This route can also receive a query parameter "search" that will filter the results to match it.
