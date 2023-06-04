@@ -8,9 +8,9 @@ The second API receives products from the RabbitMQ queue and saves them in its o
 
 ## How to run
 
-1. Clone this repository (API-A)
+2. Clone the API-A repository, available at: https://github.com/Rodrigodcs/paybrokers-api-a
 
-2. Clone the API-B repository, available at: https://github.com/Rodrigodcs/paybrokers-api-b
+1. Clone this repository (API-B)
 
 3. Create a .env file based on .env.example
 
@@ -28,6 +28,10 @@ npm i
 ```bash
 npm start
 ```
+7. If done based on .env.example:
+ - API-A and API-B will be listening on PORTs 3000 and 3001, respectively.
+ - To access rabbitmq, insert `http://localhost:15672/` to the web browser with username: guest and password: guest.
+ - The mongo database will be running on PORT 4000
 
 ## Funcionalities
 
@@ -35,7 +39,7 @@ npm start
  - POST /products
 
  Route used to send product information to API-A
- 
+
  ```json
 //Body
   "name": product's name (string, required),
