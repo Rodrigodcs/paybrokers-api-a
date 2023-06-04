@@ -30,9 +30,7 @@ npm start
 ```
 7. If done based on .env.example:
  - API-A and API-B will be listening on PORTs 3000 and 3001, respectively.
- - To access rabbitmq, insert `http://localhost:15672/` to the web browser:
-  -- username: guest 
-  -- password: guest
+ - To access rabbitmq, insert `http://localhost:15672/` to the web browser: username: guest /password: guest
  - The mongo database will be running on PORT 4000
 
 ## Funcionalities
