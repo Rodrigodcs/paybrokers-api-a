@@ -15,13 +15,13 @@ export class ProductsService {
     async create(createProductDto: CreateProductDto) {
         const alreadyExists = await this.productModel.find({name:createProductDto.name}).exec()
         if(alreadyExists.length) throw new HttpException('Product already exists', HttpStatus.CONFLICT);
-
         const newProduct = new this.productModel(createProductDto);
-        await newProduct.save();
-        
+        const product = await newProduct.save();
+        const productObject = product.toObject({versionKey: false})
+
         this.client.emit("newProduct", createProductDto)
 
-        return newProduct;
+        return productObject;
     }
 
     async findAll() {
